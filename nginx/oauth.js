@@ -1,4 +1,6 @@
-/var/log/nginx # cat /etc/nginx/js/oauth.js
+/* /var/log/nginx # cat /etc/nginx/js/oauth.js */
+
+
 function introspectAccessToken(r) {
         var auth_head = r.headersIn['Authorization'];
         var token = auth_head.split(" ")[1]
