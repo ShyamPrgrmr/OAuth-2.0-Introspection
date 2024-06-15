@@ -50,7 +50,6 @@ app.get('/',  (req, res) => {
         const resHeader = new Headers();
         resHeader.append("Authorization","Bearer "+token)
 
-        console.log(resHeader)
 
         const resrequestOptions = {
             method: "GET",
@@ -58,6 +57,7 @@ app.get('/',  (req, res) => {
             redirect: "follow"
         };
         
+        console.log("INFO "+Date.now().toString()+" CALLING NGINX")
         fetch(server_url, resrequestOptions)
         .then((response) => {
             if(response.status==200)
@@ -65,6 +65,7 @@ app.get('/',  (req, res) => {
             else
                 return res.status(401).send("<h1>401 Unauthorized</h1>")
         }).then((data)=>{
+            console.log("INFO "+Date.now().toString()+" GOT SUCCESSFUL RESPONSE : "+data);
             res.status(200).send(data);
         }).catch(err=>{
             console.log("error");
@@ -83,5 +84,3 @@ app.get('/',  (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
-
